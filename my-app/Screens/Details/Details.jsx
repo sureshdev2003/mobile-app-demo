@@ -1,13 +1,10 @@
-// screens/DetailsScreen.js
-import React from 'react';
-import { View, Text } from 'react-native';
+import { View, Text } from 'react-native'
+import React from 'react'
 
-export default function DetailsScreen({ route }) {
-  const { userId } = route.params || {};
+export default function Details() {
   return (
-    <View style={{ flex:1, alignItems:'center', justifyContent:'center' }}>
-      <Text>Details Screen</Text>
-      <Text>User ID: {userId}</Text>
+    <View>
+      <Text>Details</Text>
     </View>
-  );
+  )
 }

@@ -13,9 +13,10 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen 
-          name="Home" 
+          name="Home"
           component={HomeScreen} 
-          options={{ title: 'Welcome' }} 
+         
+          
         />
         <Stack.Screen 
           name="Details" 
