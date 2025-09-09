@@ -5,6 +5,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './Screens/Dashboard/Dashboard';
 import DetailsScreen from './Screens/Details/Details';
 import { useIsFocused } from '@react-navigation/native';
+import Login from './Screens/Login/Login';
 
 const Stack = createNativeStackNavigator();
 
@@ -13,7 +14,7 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen 
-          name="Home"
+          name="Dashboard"
           component={HomeScreen} 
          
           
@@ -21,6 +22,10 @@ export default function App() {
         <Stack.Screen 
           name="Details" 
           component={DetailsScreen} 
+        />
+        <Stack.Screen 
+          name="Home" 
+          component={Login} 
         />
       </Stack.Navigator>
     </NavigationContainer>
