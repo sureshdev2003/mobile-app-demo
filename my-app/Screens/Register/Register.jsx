@@ -1,19 +1,33 @@
 import React, { useState } from "react";
 import { View, Text, TextInput, TouchableOpacity, StyleSheet } from "react-native";
 
-export default function LoginScreen() {
+export default function RegisterScreen() {
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
 
-  const handleLogin = () => {
+  const handleRegister = () => {
+    if (password !== confirmPassword) {
+      alert("Passwords do not match!");
+      return;
+    }
+    console.log("Name:", name);
     console.log("Email:", email);
     console.log("Password:", password);
-    // Add your login logic here
+    // Add your register logic here
   };
 
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Login</Text>
+      <Text style={styles.title}>Register</Text>
+
+      <TextInput
+        style={styles.input}
+        placeholder="Full Name"
+        value={name}
+        onChangeText={setName}
+      />
 
       <TextInput
         style={styles.input}
@@ -31,14 +45,21 @@ export default function LoginScreen() {
         secureTextEntry
       />
 
-      <TouchableOpacity style={styles.button} onPress={handleLogin}>
-        <Text style={styles.buttonText}>Login</Text>
+      <TextInput
+        style={styles.input}
+        placeholder="Confirm Password"
+        value={confirmPassword}
+        onChangeText={setConfirmPassword}
+        secureTextEntry
+      />
+
+      <TouchableOpacity style={styles.button} onPress={handleRegister}>
+        <Text style={styles.buttonText}>Sign Up</Text>
       </TouchableOpacity>
 
-       <Text style={styles.registerText}>Don’t have an account? </Text>
-        <TouchableOpacity onPress={() => navigation.navigate("Register")}>
-          <Text style={styles.link}>Register</Text>
-        </TouchableOpacity>
+      <Text style={styles.loginText}>
+        Already have an account? <Text style={styles.link}>Login</Text>
+      </Text>
     </View>
   );
 }
@@ -69,7 +90,7 @@ const styles = StyleSheet.create({
   button: {
     width: "100%",
     height: 50,
-    backgroundColor: "#007bff",
+    backgroundColor: "#28a745",
     borderRadius: 8,
     alignItems: "center",
     justifyContent: "center",
@@ -80,13 +101,13 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "600",
   },
-  registerText: {
+  loginText: {
     marginTop: 20,
     fontSize: 14,
     color: "#555",
   },
   link: {
-    color: "#007bff",
+    color: "#28a745",
     fontWeight: "bold",
   },
 });
