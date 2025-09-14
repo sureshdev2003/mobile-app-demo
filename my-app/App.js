@@ -14,16 +14,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator >
-        <Stack.Screen 
-          name="Dashboard"
-          component={HomeScreen} 
-         
-          
-        />
-        <Stack.Screen 
-          name="Details" 
-          component={DetailsScreen} 
-        />
+      
         <Stack.Screen 
           name="Home" 
           component={Login} 
@@ -31,6 +22,12 @@ export default function App() {
          <Stack.Screen 
           name="Register" 
           component={RegisterScreen} 
+        />
+         <Stack.Screen 
+          name="Dashboard"
+          component={HomeScreen} 
+         
+          
         />
 
       </Stack.Navigator>
