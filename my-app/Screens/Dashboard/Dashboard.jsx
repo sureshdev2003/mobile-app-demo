@@ -1,5 +1,6 @@
 import React from "react";
 import { View, Text, FlatList, StyleSheet, SafeAreaView, ScrollView } from "react-native";
+ import { Button } from "react-native";
 
 const transactions = [
   { id: "1", title: "Grocery Store", amount: "-₹1,200", date: "12 Sep" },
@@ -51,6 +52,13 @@ export default function Dashboard() {
                 ]}
               >
                 {item.amount}
+               
+
+<Button 
+  title="Go to Payment" 
+  onPress={() => navigation.navigate("Payment")} 
+/>
+
               </Text>
             </View>
           )}

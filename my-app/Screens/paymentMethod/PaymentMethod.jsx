@@ -1,97 +1,96 @@
+// PaymentMethod.js
 import React, { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity, SafeAreaView } from "react-native";
+import Ionicons from "react-native-vector-icons/Ionicons";
 
-export default function PaymentUI() {
-  const [cardNumber, setCardNumber] = useState("");
-  const [expiry, setExpiry] = useState("");
-  const [cvv, setCvv] = useState("");
-  const [name, setName] = useState("");
+export default function PaymentMethod() {
+  const [selected, setSelected] = useState("card");
 
-  const handlePay = () => {
-    alert("Payment button clicked!");
-  };
+  const methods = [
+    { id: "card", label: "Credit / Debit Card", icon: "card" },
+    { id: "upi", label: "UPI", icon: "logo-google" },
+    { id: "wallet", label: "Wallet", icon: "wallet" },
+    { id: "cod", label: "Cash on Delivery", icon: "cash" },
+  ];
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Payment Details</Text>
+    <SafeAreaView style={styles.container}>
+      <Text style={styles.header}>💳 Select Payment Method</Text>
 
-      <TextInput
-        style={styles.input}
-        placeholder="Card Holder Name"
-        value={name}
-        onChangeText={setName}
-      />
+      {methods.map((method) => (
+        <TouchableOpacity
+          key={method.id}
+          style={[
+            styles.option,
+            selected === method.id && styles.selectedOption,
+          ]}
+          onPress={() => setSelected(method.id)}
+        >
+          <Ionicons
+            name={method.icon}
+            size={24}
+            color={selected === method.id ? "#007AFF" : "#555"}
+          />
+          <Text
+            style={[
+              styles.optionText,
+              selected === method.id && styles.selectedText,
+            ]}
+          >
+            {method.label}
+          </Text>
+        </TouchableOpacity>
+      ))}
 
-      <TextInput
-        style={styles.input}
-        placeholder="Card Number"
-        keyboardType="numeric"
-        value={cardNumber}
-        onChangeText={setCardNumber}
-      />
-
-      <View style={styles.row}>
-        <TextInput
-          style={[styles.input, styles.halfInput]}
-          placeholder="MM/YY"
-          value={expiry}
-          onChangeText={setExpiry}
-        />
-        <TextInput
-          style={[styles.input, styles.halfInput]}
-          placeholder="CVV"
-          secureTextEntry={true}
-          keyboardType="numeric"
-          value={cvv}
-          onChangeText={setCvv}
-        />
-      </View>
-
-      <TouchableOpacity style={styles.button} onPress={handlePay}>
-        <Text style={styles.buttonText}>Pay Now</Text>
+      <TouchableOpacity style={styles.payButton}>
+        <Text style={styles.payButtonText}>Proceed to Pay</Text>
       </TouchableOpacity>
-    </View>
+    </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    padding: 20,
     backgroundColor: "#f9f9f9",
+    padding: 20,
   },
-  title: {
-    fontSize: 24,
+  header: {
+    fontSize: 22,
     fontWeight: "bold",
     marginBottom: 20,
-    textAlign: "center",
-    color: "#333",
   },
-  input: {
+  option: {
+    flexDirection: "row",
+    alignItems: "center",
+    padding: 15,
     borderWidth: 1,
-    borderColor: "#ccc",
+    borderColor: "#ddd",
     borderRadius: 10,
-    padding: 12,
     marginBottom: 15,
     backgroundColor: "#fff",
   },
-  row: {
-    flexDirection: "row",
-    justifyContent: "space-between",
+  selectedOption: {
+    borderColor: "#007AFF",
+    backgroundColor: "#e6f0ff",
   },
-  halfInput: {
-    flex: 1,
-    marginRight: 10,
+  optionText: {
+    marginLeft: 10,
+    fontSize: 16,
+    color: "#333",
   },
-  button: {
-    backgroundColor: "#4CAF50",
+  selectedText: {
+    color: "#007AFF",
+    fontWeight: "bold",
+  },
+  payButton: {
+    marginTop: 30,
+    backgroundColor: "#007AFF",
     padding: 15,
     borderRadius: 10,
     alignItems: "center",
-    marginTop: 10,
   },
-  buttonText: {
+  payButtonText: {
     color: "#fff",
     fontSize: 18,
     fontWeight: "bold",
